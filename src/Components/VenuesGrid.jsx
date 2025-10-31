@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import VenuesCard from "./VenuesCard.jsx";
 import "../styles/VenuesCard.css";
@@ -39,34 +39,52 @@ const venuesData = [
   { id: 34, title: "More Venue 4", image: "/images/Dining-room.jpg", tag: "More" },
 ];
 
-
 export default function VenuesGrid() {
   const location = useLocation();
-
   const currentTag = location.pathname.replace("/", "") || "NGE";
 
-  const filteredVenues = venuesData.filter(venue =>
-    venue.tag.toLowerCase() === currentTag.toLowerCase()
+  // Store favorites in state by venue ID
+  const [favorites, setFavorites] = useState({});
+
+  // Optionally, load from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("favorites");
+    if (saved) setFavorites(JSON.parse(saved));
+  }, []);
+
+  // Save to localStorage whenever favorites change
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const filteredVenues = venuesData.filter(
+    (venue) => venue.tag.toLowerCase() === currentTag.toLowerCase()
   );
 
-    const venuesGridStyle = {
+  const venuesGridStyle = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-    gap: "60px",            
-    padding: "20px",        
-    justifyItems: "center",  
-    maxWidth: "1400px",      
-    margin: "0 auto",        
-    };
+    gap: "60px",
+    padding: "20px",
+    justifyItems: "center",
+    maxWidth: "1400px",
+    margin: "0 auto",
+  };
 
   return (
     <div style={venuesGridStyle}>
       {filteredVenues.length > 0 ? (
-        filteredVenues.map(venue => (
+        filteredVenues.map((venue) => (
           <VenuesCard
             key={venue.id}
             title={venue.title}
             image={venue.image}
+            isFavorite={favorites[venue.id] || false}
+            onFavoriteToggle={() => toggleFavorite(venue.id)}
           />
         ))
       ) : (
