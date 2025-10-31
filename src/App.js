@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import Homepage from './Components/Homepage.jsx';
 import Dashboard from './Components/Dashboard.jsx';
-import Home from './Components/Homepage.jsx';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-   // <Dashboard/>
-    <Home/>
+     <Dashboard></Dashboard>
+   // <Homepage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
   );
 }
 
