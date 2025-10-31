@@ -66,13 +66,13 @@ export default function VenuesGrid() {
   );
 
   const venuesGridStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-    gap: "60px",
-    padding: "20px",
-    justifyItems: "center",
-    maxWidth: "1400px",
-    margin: "0 auto",
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)", // max 3 columns
+  gap: "60px",
+  padding: "20px",
+  width: "100%",
+  maxWidth: "1400px",
+  margin: "0 auto",
   };
 
   return (
