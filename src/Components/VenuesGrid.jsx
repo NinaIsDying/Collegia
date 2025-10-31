@@ -65,15 +65,16 @@ export default function VenuesGrid() {
     (venue) => venue.tag.toLowerCase() === currentTag.toLowerCase()
   );
 
-  const venuesGridStyle = {
+ const venuesGridStyle = {
   display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)", // max 3 columns
+  gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
   gap: "60px",
   padding: "20px",
   width: "100%",
-  maxWidth: "1400px",
+  maxWidth: "1200px", 
   margin: "0 auto",
-  };
+};
+
 
   return (
     <div style={venuesGridStyle}>

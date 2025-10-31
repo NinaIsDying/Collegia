@@ -8,6 +8,25 @@
   --color-border: #E6E6E6;    /* Subtle border gray */
 }
 
+/* HTML, BODY take full height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Wrapper contains all page content */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content grows to fill available space */
+.main-content {
+  flex: 1;
+}
+
+
 .search-bar {
   margin-top: 15px;
   display: flex;

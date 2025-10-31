@@ -1,4 +1,5 @@
 import "../styles/Dashboard.css"; 
+
 import SearchBar from "./SearchBar.jsx";
 import VenuesGrid from "./VenuesGrid.jsx";
 import Navigation from "./Navigation.jsx"; 
@@ -7,8 +8,7 @@ import Footer from "./Footer.jsx";
 
 export default function Dashboard() {
   return (
-    // needs header
-    <>
+ 
     <Router>
       <SearchBar />
       <Navigation />
@@ -17,7 +17,6 @@ export default function Dashboard() {
         <Route path="/" element={<VenuesGrid />} />
       </Routes>
     </Router>
-    <Footer></Footer>
-    </>
+   
   );
 }
